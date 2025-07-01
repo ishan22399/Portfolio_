@@ -1,0 +1,55 @@
+{
+  "name": "ishan-shivankar-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Ishan Shivankar - Technology Professional specializing in Machine Learning, Computer Vision, and Blockchain Development",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Build completed'",
+    "start": "netlify dev",
+    "deploy": "netlify deploy",
+    "deploy:prod": "netlify deploy --prod",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'",
+    "serve": "npx http-server . -p 8080"
+  },
+  "keywords": [
+    "portfolio",
+    "machine-learning",
+    "computer-vision",
+    "blockchain",
+    "web-development",
+    "serverless",
+    "netlify"
+  ],
+  "author": {
+    "name": "Ishan Shivankar",
+    "email": "ishan.shivankar@email.com",
+    "url": "https://github.com/ishan-shivankar"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.10.1",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ishan-shivankar/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ishan-shivankar/portfolio/issues"
+  },
+  "homepage": "https://ishan-shivankar.netlify.app",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
