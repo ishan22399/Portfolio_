@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ishan Shivankar | Software Engineer</title>
+    <link rel="icon" type="image/png" href="profile.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Professional Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -518,6 +519,11 @@
         }
         
         @media screen and (max-width: 576px) {
+            .project-card p,
+            .project-content p {
+                font-size: 0.72rem !important;
+                line-height: 1.35;
+            }
             .skills-container {
                 grid-template-columns: 1fr;
             }
@@ -955,13 +961,106 @@
         
         @media screen and (max-width: 576px) {
             .project-carousel-container {
-                padding: 0 40px; /* Adjusted padding for mobile */
+                max-width: 100vw;
+                padding: 0 0.2rem;
+                margin: 0 auto;
+                box-sizing: border-box;
             }
-            
+            .project-carousel {
+                max-width: 100vw;
+                padding: 0;
+                gap: 0;
+                display: flex;
+                flex-direction: row;
+                overflow-x: hidden;
+            }
+            .project-card {
+                min-width: 100vw !important;
+                max-width: 100vw !important;
+                flex: 0 0 100vw !important;
+                margin: 0 auto 1.2rem auto;
+                border-radius: 1.1rem;
+                box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+                padding: 1.1rem 0.7rem 1.2rem 0.7rem;
+                font-size: 0.97rem;
+                animation: fadeInUp 0.7s cubic-bezier(0.23,1,0.32,1);
+            }
+            .project-img img {
+                width: 100%;
+                height: 170px;
+                object-fit: cover;
+                border-radius: 0.8rem;
+                animation: fadeInUp 0.7s cubic-bezier(0.23,1,0.32,1);
+            }
+            .project-content {
+                padding: 0.7rem 0.2rem 0 0.2rem;
+                font-size: 0.97rem;
+            }
+            .project-title {
+                font-size: 1.08rem;
+                margin-bottom: 0.5rem;
+                animation: fadeInUp 0.7s cubic-bezier(0.23,1,0.32,1);
+            }
+            .project-tech {
+                margin-bottom: 0.5rem;
+                font-size: 0.82rem;
+                gap: 2px;
+            }
+            .tech-tag {
+                font-size: 0.82rem;
+                padding: 0.18rem 0.6rem;
+                margin-right: 0.18rem;
+                margin-bottom: 0.18rem;
+                border-radius: 0.4em;
+            }
+            .project-links {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                margin-top: 0.5rem;
+                align-items: flex-start;
+                width: 100%;
+            }
+            .project-link {
+                font-size: 0.97rem;
+                padding: 0.38rem 0.9rem;
+                border-radius: 0.5rem;
+                margin-bottom: 0.1rem;
+                width: 100%;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                box-sizing: border-box;
+                transition: background 0.2s, color 0.2s, transform 0.2s;
+            }
+            .project-link i {
+                font-size: 1.01rem;
+                margin-left: 1px;
+            }
+            .project-link:hover {
+                background: var(--lighter-gray);
+                color: var(--accent);
+                transform: translateY(-1px) scale(1.03);
+            }
             .project-nav {
-                width: 40px;
-                height: 40px;
+                width: 36px;
+                height: 36px;
                 font-size: 1rem;
+                min-width: 36px;
+                min-height: 36px;
+                border-radius: 50%;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+                transition: background 0.2s, color 0.2s, transform 0.2s;
+                opacity: 0.85;
+            }
+            .project-nav i {
+                font-size: 1rem;
+            }
+            .project-nav:active {
+                background: var(--accent);
+                color: var(--white);
+                transform: scale(0.95);
             }
         }
     </style>
@@ -2060,112 +2159,104 @@
             const prevBtn = document.querySelector('.project-prev');
             const nextBtn = document.querySelector('.project-next');
             const dots = document.querySelectorAll('.dot');
-            
-            const cardsPerView = window.innerWidth <= 992 ? 1 : 2;
+
+            // Responsive: always 1 card per view on mobile (<=576px), else 2 on desktop/tablet
+            function getCardsPerView() {
+                if (window.matchMedia('(max-width: 576px)').matches) return 1;
+                if (window.innerWidth <= 992) return 1;
+                return 2;
+            }
+            let cardsPerView = getCardsPerView();
             let currentIndex = 0;
             let autoSlideInterval;
-            let isTransitioning = false; // Flag to prevent multiple rapid transitions
-            
-            // Initialize carousel with active states
+            let isTransitioning = false;
+
+            // Recalculate cardsPerView and update carousel on resize
+            window.addEventListener('resize', () => {
+                const prevCardsPerView = cardsPerView;
+                cardsPerView = getCardsPerView();
+                // Snap to nearest valid index for new cardsPerView
+                currentIndex = Math.floor(currentIndex / cardsPerView) * cardsPerView;
+                updateCarousel();
+            });
+
             updateActiveCards();
-            
-            // Add navigation click events with debounce
+
             prevBtn.addEventListener('click', () => {
                 if (!isTransitioning) {
                     navigate(-1);
                 }
             });
-            
             nextBtn.addEventListener('click', () => {
                 if (!isTransitioning) {
                     navigate(1);
                 }
             });
-            
-            // Add dot navigation with transition check
+
             dots.forEach(dot => {
                 dot.addEventListener('click', () => {
                     if (!isTransitioning) {
                         const dotIndex = parseInt(dot.getAttribute('data-index'));
+                        cardsPerView = getCardsPerView();
                         currentIndex = dotIndex * cardsPerView;
                         updateCarousel();
                     }
                 });
             });
-            
-            // Add touch navigation for mobile with improved transitions
+
             let touchStartX = 0;
             let touchEndX = 0;
-            
             carousel.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].screenX;
-                // Pause auto-slide on touch
                 clearInterval(autoSlideInterval);
             }, { passive: true });
-            
             carousel.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
                 if (!isTransitioning) {
                     if (touchStartX - touchEndX > 50) {
-                        navigate(1);  // Swipe left
+                        navigate(1);
                     } else if (touchEndX - touchStartX > 50) {
-                        navigate(-1);  // Swipe right
+                        navigate(-1);
                     }
                 }
-                // Restart auto-slide after touch
                 resetAutoSlide();
             }, { passive: true });
-            
-            // Navigation function with transition lock
+
             function navigate(direction) {
                 if (isTransitioning) return;
-                
                 isTransitioning = true;
+                cardsPerView = getCardsPerView();
                 currentIndex += direction * cardsPerView;
-                
-                // Loop to beginning if at end
                 if (currentIndex < 0) {
                     currentIndex = Math.floor((cards.length - 1) / cardsPerView) * cardsPerView;
-                } 
-                
-                // Loop to end if at beginning
+                }
                 if (currentIndex >= cards.length) {
                     currentIndex = 0;
                 }
-                
                 updateCarousel();
                 resetAutoSlide();
-                
-                // Release transition lock after animation completes
                 setTimeout(() => {
                     isTransitioning = false;
                 }, 600);
             }
-            
-            // Update carousel position with improved animation
+
             function updateCarousel() {
-                const cardWidth = carousel.querySelector('.project-card').offsetWidth + 30; // width + gap
-                
-                // Apply transition class for smoother scrolling
+                cardsPerView = getCardsPerView();
+                const cardWidth = carousel.querySelector('.project-card').offsetWidth + 30;
                 carousel.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
                 carousel.scrollTo({
                     left: currentIndex * cardWidth,
                     behavior: 'smooth'
                 });
-                
                 updateActiveCards();
                 updateActiveDot();
             }
-            
-            // Update visible cards with staggered animation
+
             function updateActiveCards() {
+                cardsPerView = getCardsPerView();
                 cards.forEach((card, index) => {
                     const isActive = index >= currentIndex && index < currentIndex + cardsPerView;
-                    
-                    // Remove active class from all cards first
                     card.classList.remove('active');
-                    
-                    // Add active class with a slight delay for each card
                     if (isActive) {
                         setTimeout(() => {
                             card.classList.add('active');
@@ -2173,43 +2264,33 @@
                     }
                 });
             }
-            
-            // Update active dot
+
             function updateActiveDot() {
+                cardsPerView = getCardsPerView();
                 const activeDotIndex = Math.floor(currentIndex / cardsPerView);
-                
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === activeDotIndex);
                 });
             }
-            
-            // Auto-slide functionality
+
             function startAutoSlide() {
                 autoSlideInterval = setInterval(() => {
                     navigate(1);
-                }, 5000); // Change slide every 5 seconds
+                }, 5000);
             }
-            
             function resetAutoSlide() {
                 clearInterval(autoSlideInterval);
                 startAutoSlide();
             }
-            
-            // Start auto-slide
             startAutoSlide();
-            
-            // Pause on hover
             carousel.addEventListener('mouseenter', () => {
                 clearInterval(autoSlideInterval);
-                // Slightly increase opacity of navigation buttons for better UX
                 document.querySelectorAll('.project-nav').forEach(nav => {
                     nav.style.opacity = '0.9';
                 });
             });
-            
             carousel.addEventListener('mouseleave', () => {
                 startAutoSlide();
-                // Reset opacity of navigation buttons
                 document.querySelectorAll('.project-nav').forEach(nav => {
                     nav.style.opacity = '0.8';
                 });
