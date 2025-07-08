@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ishan Shivankar | Software Engineer</title>
+    <title>Ishan Shivankar</title>
     <link rel="icon" type="image/png" href="profile.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Professional Google Fonts -->
@@ -11,6 +11,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+/* --- Responsive Media Queries for All Major Device Sizes --- */
+/* Extra Large Devices (Desktops, >1200px) */
+@media screen and (min-width: 1201px) {
+  body { font-size: 1.08rem; }
+  .container { max-width: 1200px; }
+  h1 { font-size: 4.2rem; }
+  h2 { font-size: 3.1rem; }
+  .hero-image, .avatar-wrapper { max-width: 420px; }
+  .project-card { font-size: 1.08rem; }
+}
+
+/* Large Devices (Desktops, 992px–1200px) */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .container { max-width: 1000px; }
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.5rem; }
+  .hero-image, .avatar-wrapper { max-width: 340px; }
+  .project-card { font-size: 1.01rem; }
+}
+
+/* Medium Devices (Tablets, 768px–991px) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .container { max-width: 760px; }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.8rem; }
+  .hero-image, .avatar-wrapper { max-width: 210px; }
+  .project-card { font-size: 0.97rem; }
+  .skills-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Small Devices (Landscape Phones, 577px–767px) */
+@media screen and (min-width: 577px) and (max-width: 767px) {
+  .container { max-width: 98vw; padding: 0 1vw; }
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.2rem; }
+  .hero-image, .avatar-wrapper { max-width: 120px; }
+  .project-card { font-size: 0.93rem; }
+  .skills-container { grid-template-columns: 1fr; }
+}
+
+/* Extra Small Devices (Portrait Phones, ≤576px) */
+@media screen and (max-width: 576px) {
+  .container { max-width: 100vw; padding: 0 2vw; }
+  h1 { font-size: 1.2rem; }
+  h2 { font-size: 1rem; }
+  .hero-flex { display: grid; grid-template-columns: 1fr auto; gap: 2px; }
+  .hero-content { padding: 0 2vw 0 0; }
+  .hero-image, .avatar-wrapper { max-width: 38px; min-width: 28px; }
+  .avatar-animate { width: 98%; height: 98%; }
+  .project-card { font-size: 0.87rem; min-width: 96vw !important; max-width: 98vw !important; }
+  .skills-container { grid-template-columns: 1fr; }
+  .info-card { padding: 1.1rem; }
+  .contact-form { padding: 1.1rem; }
+  .footer-content { padding: 0 1vw; }
+}
         /* Refined Monochrome Color Palette */
         :root {
             --black: #000000;
@@ -302,6 +357,15 @@
         }
 
         @media screen and (max-width: 480px) {
+    #projects p.scroll-animation {
+        font-size: 0.89rem;
+        line-height: 1.4;
+        margin-bottom: 1.1rem;
+        padding: 0 0.2rem;
+        max-width: 98vw;
+        text-align: left;
+        color: var(--medium-gray);
+    }
             .logo {
                 font-size: 1.4rem;
             }
@@ -521,11 +585,21 @@
         @media screen and (max-width: 576px) {
             .project-card p,
             .project-content p {
-                font-size: 0.72rem !important;
+                font-size: 0.8rem !important;
                 line-height: 1.35;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+
             }
             .skills-container {
                 grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto;
             }
         }
 
@@ -1063,6 +1137,178 @@
                 transform: scale(0.95);
             }
         }
+
+    @media screen and (max-width: 480px) {
+    /* Project Carousel Container */
+
+    .project-carousel-container {
+        max-width: 96vw;
+        padding: 0.5rem 0.5rem 0.7rem 0.5rem;
+        margin: 0 auto 0.5rem auto;
+        box-sizing: border-box;
+        position: relative;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        margin-bottom: -15%;
+    }
+
+    .project-carousel {
+        max-width: 100vw;
+        width: 100vw;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        align-items: stretch;
+        box-sizing: border-box;
+    }
+
+    .project-card {
+        flex: 0 0 92vw;
+        width: 92vw;
+        max-width: 92vw;
+        min-width: 92vw;
+        margin: 0 2vw 1.1rem 2vw;
+        border-radius: 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        font-size: 0.93rem;
+        animation: fadeInUp 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        background: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        scroll-snap-align: center;
+    }
+
+    .project-img img {
+        width: 100vw;
+        max-width: 92vw;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 0.8rem 0.8rem 0 0;
+        animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        display: block;
+        margin: 0 auto;
+        background: var(--lighter-gray);
+    }
+
+    .project-content {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+        font-size: 0.93rem;
+        line-height: 1.4;
+        animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .project-title {
+        font-size: 1.01rem;
+        margin-bottom: 0.4rem;
+        animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .project-tech {
+        margin-bottom: 0.4rem;
+        font-size: 0.8rem;
+        gap: 2px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tech-tag {
+        font-size: 0.7rem;
+        padding: 0.13rem 0.5rem;
+        margin-right: 0.13rem;
+        margin-bottom: 0.13rem;
+        border-radius: 0.4em;
+    }
+
+    .project-links {
+        display: flex;
+        margin-top: 0.9rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+        align-items: center;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .project-link {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.4rem;
+        border-radius: 0.2rem;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        box-sizing: border-box;
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .project-link i {
+        font-size: 0.7rem;
+        margin-left: 1px;
+    }
+
+    .project-link:hover {
+        background: var(--lighter-gray);
+        color: var(--accent);
+        transform: translateY(-1px) scale(1.01);
+    }
+
+    .project-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        min-width: 40px;
+        min-height: 40px;
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--white);
+        z-index: 1002;
+        pointer-events: auto;
+    }
+
+    .project-prev {
+        left: -18px;
+        right: auto;
+    }
+    .project-next {
+        right: 18px;
+        left: auto;
+    }
+
+
+    .project-nav i {
+        font-size: 0.95rem;
+    }
+
+    .project-nav:active {
+        background: var(--accent);
+        color: var(--white);
+        transform: scale(0.95);
+    }
+}
     </style>
 </head>
 <body>
@@ -1133,9 +1379,9 @@
       <!-- Small space below hero-meta for visual separation -->
       <div style="height:14px;"></div>
 
-      <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:10px;">
-        <a href="#projects" class="btn hero-cta" style="padding: 14px 28px 14px 28px; min-width: 0; font-size: 1rem;">View Portfolio <i class="fas fa-arrow-right" style="margin-left:10px;"></i></a>
-        <a href="https://drive.google.com/file/d/1vdZOi2U2ASOiGdj17lwtXV7XeMvLgRl1/view?usp=drive_link" target="_blank" class="btn hero-cta" style="padding: 14px 32px 14px 32px; min-width: 0; font-size: 1rem;">Download Resume</a>
+      <div class="hero-cta-container" style="display:flex; gap:18px; flex-wrap:wrap; margin-top:10px;">
+        <a href="#projects" id="view-portfolio" class="btn hero-cta" style="padding: 14px 28px 14px 28px; min-width: 0; font-size: 1rem;">View Portfolio <i class="fas fa-arrow-right" style="margin-left:10px;"></i></a>
+        <a href="https://drive.google.com/file/d/1vdZOi2U2ASOiGdj17lwtXV7XeMvLgRl1/view?usp=drive_link" target="_blank" id="download-resume" class="btn hero-cta" style="padding: 14px 32px 14px 32px; min-width: 0; font-size: 1rem;">Download Resume</a>
       </div>
       
       <div class="social-icons">
@@ -1326,10 +1572,14 @@
         }
       }
       @media (max-width: 768px) {
+        #hero {
+          margin-bottom: -70px;
+        }
+        
         .hero-flex {
           flex-direction: column;
           align-items: center;
-          gap: 24px;
+          gap: 0px;
         }
         .hero-content {
           margin-top: 0;
@@ -1338,8 +1588,8 @@
         }
         .hero-image {
           flex: 0 0 100%;
-          max-width: 180px;
-          margin: 0 auto 24px auto;
+          max-width: 10px;
+          margin: 0 auto;
         }
         .avatar-wrapper {
           width: 120px;
@@ -1347,6 +1597,28 @@
           min-width: 70px;
           min-height: 70px;
         }
+        .avatar-animate {
+          width: 100%;
+          height: 100%;
+        }
+        .hero-subtitle {
+          font-size: 1.4rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .hero-meta {
+          gap: 19px !important;
+          font-size: 0.8rem !important;
+
+        }
+        .social-icons {
+          gap: 1.2rem;
+          margin-top: 1.9rem;
+        }
+        .hero-cta-container a {
+            padding: 10px 20px;
+            font-size: 0.2rem;
+        }
+
       }
       @media (max-width: 480px) {
         .hero-flex {
@@ -1361,7 +1633,10 @@
           width: 100%;
           padding: 0 2vw 0 0;
         }
-  
+        .hero-subtitle {
+          font-size: 1.2rem !important;
+          margin-bottom: 0.5rem !important;
+        }
     
         .hero-meta {
           gap: 6px !important;
@@ -1372,15 +1647,20 @@
         }
         .hero-cta {
           font-size: 0.68rem !important;
-          padding: 6px 7px 6px 7px !important;
+          padding: 8px 7px 6px 7px !important;
+          display: flex-start;
+          align-items: center;
+            justify-content: center;
+            margin-top: -0.5rem;
+
         }
         .social-icons {
-          gap: 0.5rem;
-          margin-top: 0.7rem;
+          gap: 1.5rem;
+          margin-top: 1.4rem;
         }
         .social-icon {
           width: 28px;
-          height: 28px;
+          height: 25px;
           font-size: 0.9rem;
         }
         .hero-image {
@@ -1399,12 +1679,105 @@
           width: 98%;
           height: 98%;
         }
+
+
       }
     </style>
       </div>
     </div>
   </div>
 </section>
+<style>
+/* Responsive About Section */
+@media screen and (max-width: 992px) {
+  #about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  #about .info-card {
+    padding: 1.7rem 1.2rem;
+    font-size: 0.98rem;
+  }
+  #about .about-img {
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #about {
+    padding: 3.2rem 0.7rem 2.2rem 0.7rem;
+  }
+  #about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+  }
+  #about .info-card {
+    padding: 1.1rem 0.7rem;
+    font-size: 0.93rem;
+    margin-bottom: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  #about .info-card h3 {
+    font-size: 1.08rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+  #about .info-card p {
+    font-size: 0.87rem !important;
+    margin-bottom: 0.7rem !important;
+  }
+  #about .info-card ul li {
+    font-size: 0.82rem !important;
+    gap: 5px !important;
+    margin-bottom: 0.3rem !important;
+  }
+  #about .about-img {
+    margin-bottom: 0.7rem;
+    border-radius: 0.7em;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  #about .about-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.7em;
+    object-fit: cover;
+    min-height: 120px;
+    max-height: 220px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #about {
+    padding: 2.5rem 0.5rem 1.5rem 0.5rem;
+  }
+  #about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  #about .info-card {
+    padding: 0.9rem 0.6rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    box-shadow: none;
+    border-radius: 0.5em;
+  }
+  #about .info-card h3 {
+    font-size: 1.04rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  #about .info-card p {
+    font-size: 0.82rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  #about .info-card ul li {
+    font-size: 0.75rem !important;
+    gap: 4px !important;
+    margin-bottom: 0.2rem !important;
+  }
+}
+</style>
 
 
     <!-- About Section -->
@@ -1445,21 +1818,6 @@
       </div>
     </div>
 
-    <!-- <div class="about-grid" style="margin-top: 2rem;">
-      <div class="info-card scroll-animation">
-        <h3>Education</h3>
-        <p><strong>B.Tech in Information Technology</strong><br>
-        Vishwakarma Institute of Technology, Pune<br>
-        2022 - 2026 | Current CGPA: 8.67</p>
-        <p>Coursework: Machine Learning, Operating Systems, Web & Cloud Technologies, Distributed Systems, and Software Engineering. Recognized with the FFE and NMMS scholarships for academic excellence.</p>
-      </div>
-      <div class="info-card scroll-animation">
-        <h3>My Philosophy</h3>
-        <p>I believe that great engineering lies in precision, scalability, and empathy for the end-user. Whether it's designing a blockchain-based exam system or optimizing ML pipelines, I approach every problem with curiosity, structure, and a passion for impactful innovation.</p>
-        <p>I stay at the cutting edge by combining academic research with real-world implementation. My goal is not just to code — but to create systems that solve meaningful problems at scale.</p>
-      </div>
-    </div>
-  </div> -->
 </section>
 
 
@@ -1468,7 +1826,7 @@
       <div class="container">
         <span class="section-title scroll-animation">Expertise</span>
         <h2 class="scroll-animation">Technical Proficiencies</h2>
-        <p class="scroll-animation">
+        <p class="scroll-animation" id="skills-intro">
           My technical expertise spans a diverse array of programming languages, frameworks, tools, and platforms, with hands-on experience in both academic research and real-world projects.
         </p>
 
@@ -1534,6 +1892,45 @@
             .skills-container {
               grid-template-columns: 1fr;
             }
+          }
+
+          @media screen and (max-width: 480px) {
+            .skills-container {
+              grid-template-columns: 1fr;
+              padding: 0 0.5rem;
+            }
+            .skill-category {
+              padding: 1.5rem;
+            }
+            .skill-category h3 {
+              font-size: 1.2rem;
+              margin-bottom: 1rem;
+            }
+            .skill-list {
+              font-size: 0.9rem;
+              align-items: center;
+            }
+            .skill-list li {
+              margin-bottom: 0.3rem;
+            
+              align-items: center;
+                gap: 8px;
+                font-size: 0.9rem;
+                margin-left: 20px;
+            }
+            .skill-category.active {
+              animation-duration: 0.6s;
+            }
+            .scroll-animation {
+              opacity: 1 !important;
+              transform: translateY(0) !important;
+            }
+            
+            #skills-intro {
+              font-size: 0.9rem;
+              margin-bottom: 1.5rem;
+            }
+
           }
         </style>
 
@@ -1913,6 +2310,54 @@
             </div>
         </div>
     </section>
+    <style>
+        /* Add your custom styles here */
+        @media screen and (max-width: 576px) {
+            #resume .resume-wrapper p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            #resume .resume-download {
+                text-align: center;
+            }
+            #resume .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.7rem;
+            }
+            #resume .btn i {
+                margin-left: 0.5rem;
+            }
+            #resume .container{
+                margin-bottom: -30%;
+                margin-top: -10%;
+            }
+            
+        }
+
+                @media screen and (max-width: 480px) {
+            #resume .resume-wrapper p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            #resume .resume-download {
+                text-align: center;
+            }
+            #resume .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.7rem;
+            }
+            #resume .btn i {
+                margin-left: 0.rem;
+            }
+            #resume .container{
+                margin-bottom: -30%;
+                margin-top: -10%;
+            }
+            
+        }
+    </style>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -1951,6 +2396,71 @@
             </div>
         </div>
     </section>
+
+    <style>
+        @media screen and (max-width: 576px) {
+            #contact .contact-form {
+                padding: 1.9rem;
+            }
+            #contact .form-group {
+                margin-bottom: 1.5rem;
+            }
+            #contact .form-control {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+            #contact .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.6rem;
+            }
+            #contact .form-submit {
+                text-align: center;
+            }
+
+            #contact p {
+                font-size: 0.9rem;
+                margin-bottom: -1.5rem;
+
+            }
+
+            #thank-you-message {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+        }
+
+        @media screen and (max-width: 480px) {
+            #contact .contact-form {
+                padding: 1.5rem;
+            }
+            #contact .form-group {
+                margin-bottom: 1.5rem;
+            }
+            #contact .form-control {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+            #contact .btn {
+                width: 100%;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            #contact .form-submit {
+                text-align: center;
+            }
+
+            #thank-you-message {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            #thank-you-message p{
+                font-size: 0.9rem;
+            }
+        }   
+    </style>
 
     <!-- Footer -->
     <footer>
