@@ -989,7 +989,8 @@
     <!-- Hero Section -->
 <section id="hero">
   <div class="container">
-    <div class="hero-content" style="margin-top: 55px;">
+    <div class="hero-flex" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px;">
+      <div class="hero-content" style="margin-top: 55px; flex: 1 1 350px; min-width: 300px;">
       <h1 class="hero-title">Hello, I'm Ishan Shivankar</h1>
       <h3 class="hero-subtitle">Software Engineer</h3>
       <!-- <p class="hero-desc">I specialize in Full-Stack Development, AI/ML, and Cloud Computing. My passion lies in building intelligent, scalable solutions that enhance user experiences and drive innovation.</p> -->
@@ -1051,6 +1052,10 @@
         <a href="mailto:ishanshivankar14@gmail.com" class="social-icon" title="Email">
           <i class="fas fa-envelope"></i>
         </a>
+      </div>
+      </div>
+      <div class="hero-image" style="flex: 0 0 340px; max-width: 420px; display: flex; align-items: center; justify-content: center;">
+        <img src="ChatGPT Image Jul 8, 2025, 02_39_12 PM.png" alt="Avatar" style="width: 100%; max-width: 380px; height: auto; border-radius: 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.13); object-fit: cover; background: var(--white);">
       </div>
     </div>
   </div>
@@ -1558,7 +1563,7 @@
                 <p>My professional journey includes experience in various development environments, from startups to enterprise projects. My resume details my technical qualifications, project history, and professional achievements.</p>
                 
                 <div class="resume-download">
-                    <a href="#" class="btn">Download Resume <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/file/d/1vdZOi2U2ASOiGdj17lwtXV7XeMvLgRl1/view" target="_blank" class="btn">Download Resume <i class="fas fa-download"></i></a>
                 </div>
             </div>
         </div>
@@ -1971,7 +1976,7 @@
             scrollAnimation();
             navbarScroll();
             smoothScroll();
-            formSubmission();
+            // formSubmission(); // Removed: not defined, causes JS error and breaks carousel nav
             initProjectCarousel();
         });
     </script>
